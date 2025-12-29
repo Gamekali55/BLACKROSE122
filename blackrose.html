@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>For You</title>
+
+<style>
+:root{
+    --main-bg: radial-gradient(circle at top, #ffe6f0 0%, #dcb7f2 45%, #b48ad9 100%);
+    --card-bg: rgba(255,255,255,0.22);
+    --text-color: #3a1f3d;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    background: var(--main-bg);
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:var(--text-color);
+}
+
+/* ================= Roses ================= */
+.rose{
+    position:absolute;
+    font-size:52px;
+    opacity:0.35;
+    animation: floatRose 18s linear infinite;
+    filter: blur(0.2px);
+}
+
+.rose.big{
+    font-size:72px;
+    opacity:0.45;
+}
+
+@keyframes floatRose{
+    from{
+        transform: translateY(120vh) rotate(0deg);
+    }
+    to{
+        transform: translateY(-20vh) rotate(360deg);
+    }
+}
+
+/* ================= Card ================= */
+.center{
+    position:relative;
+    max-width:820px;
+    padding:50px 55px;
+    background:var(--card-bg);
+    border-radius:28px;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+    text-align:center;
+}
+
+/* ================= Love ================= */
+.love{
+    font-size:56px;
+    font-weight:600;
+    padding:28px 55px;
+    border:3px solid #fff;
+    border-radius:22px;
+    background:rgba(255,255,255,0.25);
+    opacity:0;
+    animation: fadeIn 2.2s forwards, pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(255,255,255,0.7);}
+    70%{ box-shadow:0 0 0 25px rgba(255,255,255,0);}
+    100%{ box-shadow:0 0 0 0 rgba(255,255,255,0);}
+}
+
+/* ================= Message ================= */
+.message{
+    display:none;
+    font-size:22px;
+    line-height:2.1;
+}
+
+.line{
+    opacity:0;
+    margin:14px 0;
+    transform: translateY(8px);
+    transition: opacity 1.6s ease, transform 1.6s ease;
+}
+
+.line.show{
+    opacity:1;
+    transform: translateY(0);
+}
+
+h1{
+    font-size:36px;
+    margin-bottom:40px;
+    font-weight:500;
+}
+
+/* ================= Anim ================= */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Roses layers -->
+<div class="rose big" style="left:8%; animation-delay:0s;">🌹</div>
+<div class="rose" style="left:22%; animation-delay:6s;">🌹</div>
+<div class="rose big" style="left:40%; animation-delay:3s;">🌹</div>
+<div class="rose" style="left:58%; animation-delay:9s;">🌹</div>
+<div class="rose big" style="left:75%; animation-delay:4s;">🌹</div>
+<div class="rose" style="left:90%; animation-delay:1s;">🌹</div>
+
+<div class="center">
+
+    <div class="love" id="loveText">I love you</div>
+
+    <div class="message" id="messageText">
+
+        <h1 class="line">إلى يؤانا</h1>
+
+        <div class="line">في ناس وجودهم مش صاخب،</div>
+        <div class="line">بس تأثيرهم عميق.</div>
+
+        <div class="line">إنتِ دخلتي حياتي بهدوء،</div>
+        <div class="line">ومن غير ما تحاولي،</div>
+        <div class="line">بقيتي جزء ثابت فيها.</div>
+
+        <div class="line">يؤانا،</div>
+        <div class="line">أنا ما حبيتكش علشان لحظة،</div>
+        <div class="line">ولا علشان سبب واحد.</div>
+
+        <div class="line">حبيتك علشان الإحساس،</div>
+        <div class="line">اللي بييجي مع صوتك،</div>
+        <div class="line">ومع كلامك،</div>
+        <div class="line">ومع وجودك.</div>
+
+        <div class="line">فيكِ طمأنينة،</div>
+        <div class="line">وفي قربك راحة،</div>
+        <div class="line">وفي غيابك شوق.</div>
+
+        <div class="line">ولو ليا أمنية واحدة،</div>
+        <div class="line">فهي إنك تفضلي هنا،</div>
+        <div class="line">قريبة…</div>
+        <div class="line">زي ما إنتِ دلوقتي.</div>
+
+        <div class="line" style="margin-top:50px;">— من شخص اختارك بإحساس حقيقي</div>
+
+    </div>
+</div>
+
+<script>
+setTimeout(()=>{
+    document.getElementById("loveText").style.display="none";
+    const msg=document.getElementById("messageText");
+    msg.style.display="block";
+
+    const lines=document.querySelectorAll(".line");
+    lines.forEach((line,i)=>{
+        setTimeout(()=>{
+            line.classList.add("show");
+        }, i*900);
+    });
+},4000);
+</script>
+
+</body>
+</html>
